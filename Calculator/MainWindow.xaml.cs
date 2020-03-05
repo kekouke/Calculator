@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -101,7 +102,17 @@ namespace Calculator
             }
 
         }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = (MenuItem)sender;
+            string value = menuItem.Header.ToString();
 
+            if (value == "Exit")
+                Close();
+            if (value == "Help")
+                MessageBox.Show("Калькулятор 1.0.0.0\nСпособен выполнять базовые арифметические операции" +
+                            " - сложение, вычитание, умножение, деление.\n© Козицкий Михаил(kekouke),\n2020.");
+        }
         private void Calc()
         {
             double num1 = 0, num2 = 0;
