@@ -69,10 +69,13 @@ namespace Calculator
             {
                 if (buttonContent == "=")
                 {
-                    if (answer != "")
-                        textBlock.Text = answer;
-                    else if (leftOperand == "")
-                        textBlock.Text = "0";
+                    if (leftOperand == "")
+                    {
+                        if (answer == "")
+                            textBlock.Text = "0";
+                        else
+                            textBlock.Text = answer;
+                    }
                     else if (leftOperand != "" && rightOperand == "")
                         textBlock.Text = leftOperand;
                     else
@@ -86,6 +89,8 @@ namespace Calculator
                 }
                 else
                 {
+                    if (leftOperand == "")
+                        leftOperand = "0";
                     if (rightOperand != "")
                     {
                         Calc();
