@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +20,7 @@ namespace Calculator
 
         private Dictionary<string, OperationDelegate> _operations;
 
-        
+
         string leftOperand = "";
         string rightOperand = "";
         string operation = "";
@@ -95,7 +94,7 @@ namespace Calculator
                         textBlock.Text += buttonContent;
                     }
                     else if (operation != "")
-                        textBlock.Text = leftOperand != "" ? leftOperand + buttonContent: "0" + buttonContent;
+                        textBlock.Text = leftOperand != "" ? leftOperand + buttonContent : "0" + buttonContent;
 
                     operation = buttonContent;
                 }
