@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Calculator
@@ -28,11 +29,10 @@ namespace Calculator
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            int trash;
             string buttonContent = (string)((Button)e.OriginalSource).Content;
-            bool isNumber = Int32.TryParse(buttonContent, out trash);
+            bool isNumber = Int32.TryParse(buttonContent, out _);
 
-            if (leftOperand == "" && isNumber && operation == "")
+            if (leftOperand == "" && (isNumber || buttonContent == "," ) && operation == "")
             {
                 textBlock.Text = buttonContent;
                 answer = "";
@@ -40,7 +40,7 @@ namespace Calculator
             else
                 textBlock.Text += buttonContent;
 
-            if (isNumber)
+            if (isNumber || buttonContent == ",")
             {
                 if (operation == "")
                 {
@@ -48,6 +48,7 @@ namespace Calculator
                         leftOperand = textBlock.Text = buttonContent;
                     else
                         leftOperand += buttonContent;
+                    PointParse(ref leftOperand, buttonContent);
                 }
                 else
                 {
@@ -63,6 +64,7 @@ namespace Calculator
                     {
                         rightOperand += buttonContent;
                     }
+                    PointParse(ref rightOperand, buttonContent);
                 }
             }
             else
@@ -106,11 +108,12 @@ namespace Calculator
             }
 
         }
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = (MenuItem)sender;
             string value = menuItem.Header.ToString();
-
+           
             if (value == "Exit")
                 Close();
             if (value == "Help")
@@ -144,6 +147,20 @@ namespace Calculator
                 answer = textBlock.Text = (_operations[operation](num1, num2)).ToString();
             }
             leftOperand = rightOperand = operation = "";
+        }
+
+        private void PointParse(ref string operand, string content)
+        {
+
+            if (content == ",")
+            {
+
+                if (operand == ",")
+                     operand = "0,";
+                else if (operand[0..^1].Contains(","))
+                    operand = operand[0..^1];
+                textBlock.Text = leftOperand + operation + rightOperand;
+            }
         }
     }
 }
