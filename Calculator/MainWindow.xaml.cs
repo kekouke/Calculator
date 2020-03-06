@@ -95,10 +95,16 @@ namespace Calculator
                         leftOperand = "0";
                     if (rightOperand != "")
                     {
-                        Calc();
-
-                        leftOperand = textBlock.Text;
-                        textBlock.Text += buttonContent;
+                        if (operation == "/" && double.Parse(rightOperand) == 0)
+                        {
+                            leftOperand = operation = textBlock.Text = "0";
+                        }
+                        else
+                        {
+                            Calc();
+                            leftOperand = textBlock.Text;
+                            textBlock.Text += buttonContent;
+                        }
                     }
                     else if (operation != "")
                         textBlock.Text = leftOperand != "" ? leftOperand + buttonContent : "0" + buttonContent;
