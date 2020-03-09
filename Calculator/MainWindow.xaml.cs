@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace Calculator
@@ -97,7 +96,11 @@ namespace Calculator
                     {
                         if (operation == "/" && double.Parse(rightOperand) == 0)
                         {
-                            leftOperand = operation = textBlock.Text = "0";
+                            MessageBox.Show("Can't divide by zero");
+                            leftOperand = "";
+                            rightOperand = "";
+                            textBlock.Text = "0";
+                            buttonContent = operation = "";
                         }
                         else
                         {
