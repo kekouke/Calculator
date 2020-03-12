@@ -16,6 +16,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -25,23 +26,28 @@
             <ColumnDefinition></ColumnDefinition>
 
         </Grid.ColumnDefinitions>
-        <Button x:Name="button_5" Content="5" Grid.Row="3" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_8" Content="8" Grid.Row="2" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_9" Content="9" Grid.Row="2" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_del" Content="/" Grid.Row="2" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_7" Content="7" Grid.Row="2" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_4" Content="4" Grid.Row="3" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_6" Content="6" Grid.Row="3" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_1" Content="1" Grid.Row="4" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_umn" Content="*" Grid.Row="3" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_2" Content="2" Grid.Row="4" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_3" Content="3"  Grid.Row="4" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_minus" Content="-" Grid.Row="4" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_clear" Content="C" Grid.Row="5" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_plus" Content="+" Grid.Row="5" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_answer" Content="=" Grid.Row="6" Grid.ColumnSpan="4" Click="button_Click"/>
-        <Button x:Name="button_0" Content="0" Grid.Row="5" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_point" Content="," Grid.Row="5" Grid.Column="2" Click="button_Click" FontSize="20"/>
+        <Button x:Name="button_5" Content="5" Grid.Row="5" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_8" Content="8" Grid.Row="4" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_9" Content="9" Grid.Row="4" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_del" Content="/" Grid.Row="3" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_7" Content="7" Grid.Row="4" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_4" Content="4" Grid.Row="5" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_6" Content="6" Grid.Row="5" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_1" Content="1" Grid.Row="6" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_umn" Content="*" Grid.Row="4" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_2" Content="2" Grid.Row="6" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_3" Content="3"  Grid.Row="6" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_minus" Content="-" Grid.Row="5" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_clear" Content="C" Grid.Row="2" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_plus" Content="+" Grid.Row="6" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_answer" Content="=" Grid.Row="7" Grid.ColumnSpan="2" Click="button_Click"/>
+        <Button x:Name="button_0" Content="0" Grid.Row="7" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_point" Content="," Grid.Row="7" Grid.Column="3" Click="button_Click" FontSize="20"/>
+        <Button x:Name="button_sqrt" Content="sqrt" Grid.Row="3" Grid.Column="2" Click="button_Click"></Button>
+        <Button x:Name="button_kvadrat" Content="x^2" Grid.Row="3" Grid.Column="1" Click="button_Click"></Button>
+        <Button x:Name="button_obr" Content="1/x" Grid.Row="3" Grid.Column="0" Click="button_Click"></Button>
+        <Button x:Name="button_dellast" Content="(x)" Grid.Row="2" Grid.Column="3" Click="button_Click"></Button>
+        
         <TextBlock x:Name="textBlock" Text="0" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
         <Menu x:Name="menuBar" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center" FontSize="15">
             <MenuItem Header="File">
