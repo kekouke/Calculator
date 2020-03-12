@@ -12,6 +12,7 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -27,34 +28,40 @@
             <ColumnDefinition></ColumnDefinition>
 
         </Grid.ColumnDefinitions>
-        <Button x:Name="button_5" Content="5" Grid.Row="6" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_8" Content="8" Grid.Row="5" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_9" Content="9" Grid.Row="5" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_del" Content="/" Grid.Row="4" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_7" Content="7" Grid.Row="5" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_4" Content="4" Grid.Row="6" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_6" Content="6" Grid.Row="6" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_1" Content="1" Grid.Row="7" Grid.Column="0" Click="button_Click"/>
-        <Button x:Name="button_umn" Content="*" Grid.Row="5" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_2" Content="2" Grid.Row="7" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_3" Content="3"  Grid.Row="7" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_minus" Content="-" Grid.Row="6" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_clear" Content="C" Grid.Row="3" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_plus" Content="+" Grid.Row="7" Grid.Column="3" Click="button_Click"/>
-        <Button x:Name="button_answer" Content="=" Grid.Row="8" Grid.Column="1" Click="button_Click"/>
-        <Button x:Name="button_0" Content="0" Grid.Row="8" Grid.Column="2" Click="button_Click"/>
-        <Button x:Name="button_point" Content="," Grid.Row="8" Grid.Column="3" Click="button_Click" FontSize="20"/>
-        <Button x:Name="button_sqrt" Content="sqrt" Grid.Row="4" Grid.Column="2" Click="button_Click"></Button>
-        <Button x:Name="button_kvadrat" Content="x^2" Grid.Row="4" Grid.Column="1" Click="button_Click"></Button>
-        <Button x:Name="button_obr" Content="1/x" Grid.Row="4" Grid.Column="0" Click="button_Click"></Button>
-        <Button x:Name="button_dellast" Content="(x)" Grid.Row="3" Grid.Column="3" Click="button_Click"></Button>
-        <Button x:Name="ChangeSin" Content="+/-" Grid.Row="8" Grid.Column="0" Click="button_Click"></Button>
-        <Button x:Name="button_CE" Content="CE" Grid.Row="3" Grid.Column="1"></Button>
+        <Button x:Name="button_5" Content="5" Grid.Row="7" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_8" Content="8" Grid.Row="6" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_9" Content="9" Grid.Row="6" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_del" Content="/" Grid.Row="5" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_7" Content="7" Grid.Row="6" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_4" Content="4" Grid.Row="7" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_6" Content="6" Grid.Row="7" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_1" Content="1" Grid.Row="8" Grid.Column="0" Click="button_Click"/>
+        <Button x:Name="button_umn" Content="*" Grid.Row="6" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_2" Content="2" Grid.Row="8" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_3" Content="3"  Grid.Row="8" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_minus" Content="-" Grid.Row="7" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_clear" Content="C" Grid.Row="4" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_plus" Content="+" Grid.Row="8" Grid.Column="3" Click="button_Click"/>
+        <Button x:Name="button_answer" Content="=" Grid.Row="9" Grid.Column="1" Click="button_Click"/>
+        <Button x:Name="button_0" Content="0" Grid.Row="9" Grid.Column="2" Click="button_Click"/>
+        <Button x:Name="button_point" Content="," Grid.Row="9" Grid.Column="3" Click="button_Click" FontSize="20"/>
+        <Button x:Name="button_sqrt" Content="sqrt" Grid.Row="5" Grid.Column="2" Click="button_Click"></Button>
+        <Button x:Name="button_kvadrat" Content="x^2" Grid.Row="5" Grid.Column="1" Click="button_Click"></Button>
+        <Button x:Name="button_obr" Content="1/x" Grid.Row="5" Grid.Column="0" Click="button_Click"></Button>
+        <Button x:Name="button_dellast" Content="b" Grid.Row="4" Grid.Column="3" Click="button_Click"></Button>
+        <Button x:Name="ChangeSin" Content="+/-" Grid.Row="9" Grid.Column="0" Click="button_Click"></Button>
+        <Button x:Name="button_CE" Content="CE" Grid.Row="4" Grid.ColumnSpan="2" Click="button_Click"></Button>
+
+        <Button x:Name="button_MC" Content="MC" Grid.Row="3" Grid.Column="0" Click="button_Click"></Button>
+        <Button x:Name="button_MR" Content="MR" Grid.Row="3" Grid.Column="1" Click="button_Click"></Button>
+        <Button x:Name="button_MPlus" Content="M+" Grid.Row="3" Grid.Column="2" Click="button_Click"></Button>
+        <Button x:Name="button_MMinus" Content="M-" Grid.Row="3" Grid.Column="3" Click="button_Click"></Button>
+
 
         <TextBlock x:Name="textBlock" Text="0" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="30" Padding="0,0,5,0"/>
-        <TextBlock x:Name="operationHistory" Text="0" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" Padding="5,0,0,0"/>
-
-            <Menu x:Name="menuBar" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center" FontSize="15">
+        <TextBlock x:Name="historyBlock" Text="" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" Padding="0,0,5,0"/>
+        
+        <Menu x:Name="menuBar" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center" FontSize="15">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Click="MenuItem_Click"></MenuItem>
             </MenuItem>

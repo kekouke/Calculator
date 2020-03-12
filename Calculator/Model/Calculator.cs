@@ -12,13 +12,16 @@ namespace Calculator.Model
         public string leftOperand;
         public string rightOperand;
         public string operation;
+        public string memory;
         public bool isAnswer = false;
+        public bool memoryActive = false;
 
         public CalculatorMachine()
         {
             leftOperand = "0";
-            rightOperand = "";
+            rightOperand = "0";
             operation = "";
+            memory = "0";
         }
 
         public string Calc()
@@ -50,6 +53,5 @@ namespace Calculator.Model
                 return leftOperand = Math.Round((_operations[operation](num1, num2)), 10).ToString();
             }
         }
-
     }
 }
