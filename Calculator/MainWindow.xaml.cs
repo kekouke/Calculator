@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using Calculator.Model;
-using System.Data;
+using System.Windows.Controls;
 
 namespace Calculator
 {
 
-    public delegate decimal OperationDelegate(decimal x, decimal y);
+    public delegate double OperationDelegate(double x, double y);
 
     public partial class MainWindow : Window
     {
@@ -53,6 +51,29 @@ namespace Calculator
                 {
                     Clear();
                 }
+                else if (buttonContent == "+/-")
+                {
+                    
+                }
+                else if (buttonContent == "CE")
+                {
+                    ClearWindow();
+                }
+                else if (buttonContent == "(x)")
+                {
+                    ClearLastSymbol();
+                }
+                else if (buttonContent == "sqrt")
+                {
+                    Calc.leftOperand = Math.Sqrt(double.Parse(Calc.leftOperand)).ToString();
+                    textBlock.Text = Calc.leftOperand;
+                }
+                else if (buttonContent == "x^2")
+                {
+                    Calc.rightOperand = Calc.leftOperand;
+                    Calc.operation = "*";
+                    Calc.Calc();
+                }
                 else
                 {
                     Operate(buttonContent);
@@ -65,7 +86,7 @@ namespace Calculator
         {
             MenuItem menuItem = (MenuItem)sender;
             string value = menuItem.Header.ToString();
-           
+
             if (value == "Exit")
                 Close();
             if (value == "Help")
@@ -80,10 +101,16 @@ namespace Calculator
             {
 
                 if (operand == ",")
-                     operand = "0,";
+                {
+                    operand = "0,";
+                }
                 else if (operand[0..^1].Contains(","))
+                {
                     operand = operand[0..^1];
-                return Calc.leftOperand + Calc.operation + Calc.rightOperand;
+                }
+
+                operationHistory.Text = Calc.leftOperand + Calc.operation + Calc.rightOperand;
+                return operand;
             }
             return null;
         }
@@ -91,10 +118,13 @@ namespace Calculator
         private void Equal()
         {
             if (Calc.rightOperand == "")
+            {
                 textBlock.Text = Calc.leftOperand;
+            }
             else
+            {
                 textBlock.Text = Calc.Calc();
-
+            }
             Calc.operation = "";
         }
 
@@ -102,19 +132,30 @@ namespace Calculator
         {
             Calc.leftOperand = textBlock.Text = "0";
             Calc.rightOperand = Calc.operation = "";
+            operationHistory.Text = "0";
         }
+
+        private void ClearWindow()
+        {
+
+        } //TODO
+
+        private void ClearLastSymbol()
+        {
+
+        } //TODO
 
         private void Operate(string buttonContent)
         {
-
             if (Calc.rightOperand != "")
             {
-                Equal();          
+                Equal();
             }
 
             if (!textBlock.Text.Contains("Can't divide by zero"))
             {
                 textBlock.Text = Calc.leftOperand + buttonContent;
+                operationHistory.Text = Calc.leftOperand + buttonContent + Calc.rightOperand;
                 Calc.operation = buttonContent;
             }
 
@@ -122,7 +163,7 @@ namespace Calculator
 
         private void NumberClick(ref string operand, string buttonContent)
         {
-            if (operand.Length < 13)
+            if (operand.Length < 16)
             {
                 if (operand == "0")
                 {
@@ -132,7 +173,8 @@ namespace Calculator
                 {
                     operand += buttonContent;
                 }
-                textBlock.Text = Calc.leftOperand + Calc.operation + Calc.rightOperand;
+                operationHistory.Text = Calc.leftOperand + Calc.operation + Calc.rightOperand;
+                textBlock.Text = operand;
                 textBlock.Text = PointParse(ref operand, buttonContent) ?? textBlock.Text;
             }
         }     

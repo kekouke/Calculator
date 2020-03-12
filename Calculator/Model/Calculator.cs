@@ -23,12 +23,11 @@ namespace Calculator.Model
 
         public string Calc()
         {
-            decimal num1 = 0, num2 = 0;
+            double num1 = 0, num2 = 0;
+            num1 = double.Parse(leftOperand);
 
-            if (leftOperand != "")
-                num1 = decimal.Parse(leftOperand);
             if (rightOperand != "")
-                num2 = decimal.Parse(rightOperand);
+                num2 = double.Parse(rightOperand);
 
             rightOperand = "";
 
@@ -48,7 +47,7 @@ namespace Calculator.Model
                     { "/", (x, y) => x / y },
                 };
                 isAnswer = true;
-                return leftOperand = (_operations[operation](num1, num2)).ToString();
+                return leftOperand = Math.Round((_operations[operation](num1, num2)), 10).ToString();
             }
         }
 
