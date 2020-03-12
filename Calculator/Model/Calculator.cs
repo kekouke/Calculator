@@ -46,7 +46,7 @@ namespace Calculator.Model
                 {
                     { "+", (x, y) => x + y },
                     { "-", (x, y) => x - y },
-                    { "*", (x, y) => x * y },
+                    { "*", (x, y) => x * y + 0 },
                     { "/", (x, y) => x / y },
                 };
                 isAnswer = true;

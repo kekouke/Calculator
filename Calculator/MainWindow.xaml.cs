@@ -16,13 +16,150 @@ namespace Calculator
             InitializeComponent();
         }
 
+        #region Чтение кнопок
+        private void button_5_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("5");
+        }
+
+        private void button_8_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("8");
+        }
+
+        private void button_9_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("9");
+        }
+
+        private void button_7_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("7");
+        }
+
+        private void button_4_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("4");
+        }
+
+        private void button_6_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("6");
+        }
+
+        private void button_1_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("1");
+        }
+
+        private void button_mtpl_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("*");
+        }
+
+        private void button_2_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("2");
+        }
+
+        private void button_3_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("3");
+        }
+
+        private void button_minus_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("-");
+        }
+
+        private void button_clear_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("C");
+        }
+
+        private void button_plus_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("+");
+        }
+
+        private void button_answer_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("=");
+        }
+
+        private void button_0_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("0");
+        }
+
+        private void button_point_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse(".");
+        }
+
+        private void button_sqrt_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("sqrt");
+        }
+
+
+        private void button_inv_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("1/x");
+        }
+
+        private void button_dl_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("b");
+        }
+
+        private void button_MC_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("MC");
+        }
+
+        private void button_MR_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("MR");
+        }
+
+        private void button_MPlus_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("M+");
+        }
+
+        private void button_MMinus_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("M-");
+        }
+
+        private void button_CE_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("CE");
+        }
+
+        private void button_ChangeSin_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("+/-");
+        }
+
+        private void button_div_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("/");
+        }
+
+        private void button_sqr_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonParse("x^2");
+        }
+
+        #endregion
+
         public CalculatorMachine Calc = new CalculatorMachine();
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void ButtonParse(string buttonContent)
         {
-            string buttonContent = (string)((Button)e.OriginalSource).Content;
             bool isNumber = Int32.TryParse(buttonContent, out _);
-
 
             if (isNumber || buttonContent == ",")
             {
@@ -274,24 +411,28 @@ namespace Calculator
             {
                 Calc.memoryActive = false;
                 Calc.memory = "0";
+                memoryBlock.Text = "В памяти ничего не сохранено";
             }
             else if (buttonContent == "MR")
             {
                 if (Calc.memoryActive)
                 {
-                    textBlock.Text = Calc.memory;
+                    textBlock.Text = Calc.leftOperand = Calc.memory;
                 }
             }
             else if (buttonContent == "M+")
             {
                 Calc.memory = (double.Parse(Calc.memory) + double.Parse(textBlock.Text)).ToString();
                 Calc.memoryActive = true;
+                memoryBlock.Text = Calc.memory;
             }
             else if (buttonContent == "M-")
             {
                 Calc.memory = (double.Parse(Calc.memory) - double.Parse(textBlock.Text)).ToString();
                 Calc.memoryActive = true;
+                memoryBlock.Text = Calc.memory;
             }
         }
+
     }
 }
