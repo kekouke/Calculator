@@ -10,7 +10,6 @@ namespace Calculator
 
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -103,7 +102,7 @@ namespace Calculator
 
         private void button_point_Click(object sender, RoutedEventArgs e)
         {
-            if (Calc.operation == "")
+            if (Calc.operation == String.Empty)
             {
                 textBlock.Text = Calc.PointParse(ref Calc.leftOperand);
             }
@@ -120,32 +119,27 @@ namespace Calculator
 
         private void button_MS_Click(object sender, RoutedEventArgs e)
         {
-            var memoryData = textBlock.Text;
-            memoryBlock.Text = Calc.MemoryOperate("MS", memoryData); 
+            memoryBlock.Text = Calc.MemoryOperate("MS", textBlock.Text); 
         }
 
         private void button_MC_Click(object sender, RoutedEventArgs e)
         {
-            var memoryData = textBlock.Text;
-            memoryBlock.Text = Calc.MemoryOperate("MC", memoryData);
+            memoryBlock.Text = Calc.MemoryOperate("MC", textBlock.Text);
         }
 
         private void button_MR_Click(object sender, RoutedEventArgs e)
         {
-            var memoryData = textBlock.Text;
-            textBlock.Text = Calc.MemoryOperate("MR", memoryData);
+            textBlock.Text = Calc.MemoryOperate("MR", textBlock.Text);
         }
 
         private void button_MPlus_Click(object sender, RoutedEventArgs e)
         {
-            var memoryData = textBlock.Text;
-            memoryBlock.Text = Calc.MemoryOperate("M+", memoryData);
+            memoryBlock.Text = Calc.MemoryOperate("M+", textBlock.Text);
         }
 
         private void button_MMinus_Click(object sender, RoutedEventArgs e)
         {
-            var memoryData = textBlock.Text;
-            memoryBlock.Text = Calc.MemoryOperate("M-", memoryData);
+            memoryBlock.Text = Calc.MemoryOperate("M-", textBlock.Text);
         }
 
         private void button_CE_Click(object sender, RoutedEventArgs e)

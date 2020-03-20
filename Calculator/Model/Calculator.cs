@@ -16,11 +16,13 @@ namespace Calculator.Model
         public bool isAnswer = false;
         public bool memoryActive = false;
 
+        const string memoryIsEmpty = "В памяти ничего не сохранено";
+
         public CalculatorMachine()
         {
             leftOperand = "0";
-            rightOperand = "";
-            operation = "";
+            rightOperand = String.Empty;
+            operation = String.Empty;
             memory = "0";
             result = "^";
         }
@@ -30,17 +32,17 @@ namespace Calculator.Model
             double num1 = 0, num2 = 0;
             num1 = double.Parse(leftOperand);
 
-            if (rightOperand != "")
+            if (rightOperand != String.Empty)
             {
                 num2 = double.Parse(rightOperand);
             }
 
-            rightOperand = "";
+            rightOperand = String.Empty;
 
             if (operation == "/" && num2 == 0)
             {
                 leftOperand = "0";
-                operation = "";
+                operation = String.Empty;
                 return "Can't divide by zero";
             }
             else
@@ -61,6 +63,8 @@ namespace Calculator.Model
         {
             if (operation == String.Empty)
             {
+                isAnswer = true;
+                leftOperand = double.Parse(leftOperand).ToString();
                 return leftOperand;
 
             }
@@ -68,15 +72,16 @@ namespace Calculator.Model
             {
                 result = Calc();
             }
-            operation = String.Empty; // Возможно, это можно удалить в функции Calc()
+            operation = String.Empty;
             return result;
         }
 
         public string Clear()
         {
             leftOperand = "0";
-            rightOperand = "";
-            operation = "";
+            rightOperand = String.Empty;
+            operation = String.Empty;
+            isAnswer = false;
             return "0";
         }
 
@@ -88,7 +93,7 @@ namespace Calculator.Model
             }
             else
             {
-                rightOperand = "";
+                rightOperand = String.Empty;
             }
             return "0";
         }
@@ -96,7 +101,7 @@ namespace Calculator.Model
         public string ClearLastSymbol()
         {
             string value;
-            if (!isAnswer)
+            if (!isAnswer || operation != String.Empty)
             {
                 if (operation == String.Empty)
                 {
@@ -133,26 +138,40 @@ namespace Calculator.Model
         {
             result = "^";
 
-            if (rightOperand != "")
+            if (rightOperand != String.Empty)
             {
                 result = Equal();
             }
 
-            if (!result.Contains("Can't divide by zero"))
+            else if (operation == String.Empty)
+            {
+                result = "0";
+                rightOperand = "0"; // TODO
+            }
+            else
             {
                 result = leftOperand;
-                operation = buttonContent;
+                
             }
+
+            operation = buttonContent;
             return result;
         }
 
-        public string NumberClick(string buttonContent) // TODO : ENUM
+        public string NumberClick(string buttonContent)
         {
-            if (operation == "")
+            if (isAnswer && operation == String.Empty)
+            {
+                leftOperand = "0";
+                isAnswer = false;
+            }
+
+            if (operation == String.Empty)
             {
                 if (leftOperand.Length < 13)
                 {
-                    if (leftOperand == "0")
+
+                    if (leftOperand == String.Empty || leftOperand == "0")
                     {
                         leftOperand = buttonContent;
                     }
@@ -168,7 +187,7 @@ namespace Calculator.Model
                 if (rightOperand.Length < 13)
                 {
 
-                    if (rightOperand == "" || rightOperand == "0")
+                    if (rightOperand == String.Empty || rightOperand == "0")
                     {
                         rightOperand = buttonContent;
                     }
@@ -185,7 +204,7 @@ namespace Calculator.Model
 
         public string ChangeSign()
         {
-            if (operation == "")
+            if (operation == String.Empty)
             {
                 result = leftOperand = (-1 * double.Parse(leftOperand) + 0).ToString();
             }
@@ -203,44 +222,81 @@ namespace Calculator.Model
 
         public string MemoryOperate(string buttonContent, string memoryData)
         {
-            if (buttonContent == "MC")
+            switch(buttonContent)
             {
-                memoryActive = false;
-                memory = "0";
-                return "В памяти ничего не сохранено";
-            }
-            else if (buttonContent == "MR")
-            {
-                if (memoryActive)
-                {
-                    leftOperand = memory;
-                    return memory;
-                }
-            }
-            else if (buttonContent == "M+")
-            {
-                memory = (double.Parse(memory) + double.Parse(memoryData)).ToString();
-                memoryActive = true;
-                return memory;
-            }
-            else if (buttonContent == "M-")
-            {
-                memory = (double.Parse(memory) - double.Parse(memoryData)).ToString();
-                memoryActive = true;
-                return memory;
-            }
-            else if (buttonContent == "MS")
-            {
-                memory = memoryData;
-                memoryActive = true;
-                return memory;
-            }
-            return memoryData;
+                case "MC":
+                    memoryActive = false;
+                    memory = "0";
+                    return memoryIsEmpty;
 
+                case "MR":
+                    if (memoryActive)
+                    {
+                        if (operation == String.Empty)
+                        {
+                            leftOperand = memory;
+                        }
+                        else
+                        {
+                            rightOperand = memory;
+                        }
+                        return memory;
+                    }
+                    else
+                    {
+                        return memoryData;
+                    }
+
+                case "M+":
+                    if (double.TryParse(memoryData, out _))
+                    {
+                        memory = (double.Parse(memory) + double.Parse(memoryData)).ToString();
+                        memoryActive = true;
+                        return memory;
+                    }
+                    else
+                    {
+                        return memoryIsEmpty;
+                    }
+
+                case "M-":
+                    if (double.TryParse(memoryData, out _))
+                    {
+                        memory = (double.Parse(memory) - double.Parse(memoryData)).ToString();
+                        memoryActive = true;
+                        return memory;
+                    }
+                    else
+                    {
+                        return memoryIsEmpty;
+                    }
+
+                case "MS":
+                    if (double.TryParse(memoryData, out _))
+                    {
+                        memory = double.Parse(memoryData).ToString();
+                        memoryActive = true;
+                        return memory;
+                    }
+                    else
+                    {
+                        return memoryIsEmpty;
+                    }
+
+                default:
+                    return null;
+            }
         }
 
         public string PointParse(ref string operand)
-        {          
+        {   
+
+            if (isAnswer && operation == String.Empty)
+            {
+                operand = "0";
+                isAnswer = false;
+            }
+
             if (!operand.Contains(","))
             {
                 operand += ",";
