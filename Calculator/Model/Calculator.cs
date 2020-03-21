@@ -142,16 +142,9 @@ namespace Calculator.Model
             {
                 result = Equal();
             }
-
-            else if (operation == String.Empty)
-            {
-                result = "0";
-                rightOperand = "0"; // TODO
-            }
             else
             {
-                result = leftOperand;
-                
+                result = "0";    
             }
 
             operation = buttonContent;
